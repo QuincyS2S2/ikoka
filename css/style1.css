@@ -195,8 +195,38 @@
     justify-content: flex-end;
 }
 
+.main-nav {
+    display: flex;
+    height: 48px;
+    justify-content: space-between;
+    align-items: center;
+    align-self: stretch;
+}
+
 /* main-nav 내 아이콘 SVG 크기 통일 (알림 24, 프로필 20 → 모두 24) */
 .main-nav .icon svg {
-    width: 24px;
+    width: 26px;
+    height: 26px;
+    flex-shrink: 0;
+    aspect-ratio: 1/1;
+}
+
+.icon-wrap > .icon {
+    width: 32px;
+    height: 32px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    /* background: blue;  ← 확인 끝나면 삭제 */
+}
+.icon-wrap > .icon a {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 24px;     /* 아이콘 보이는 크기 */
     height: 24px;
+}
+.icon-wrap > .icon svg {
+    width: 100%;
+    height: 100%;
 }
