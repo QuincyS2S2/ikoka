@@ -565,6 +565,22 @@ gap: 2px;
     min-height: 0;           /* ← flex 안에서 스크롤 되게 하는 안전장치 */
 }
 
+/* 로그인 화면: 불필요한 스크롤바 제거 */
+#login .layout {
+    overflow: hidden;
+}
+
+/* main-home 화면: layout에서 스크롤, 스크롤바는 숨김 */
+#main-home .layout {
+    max-height: 852px;
+    overflow-y: auto;
+    scrollbar-width: none;          /* Firefox */
+    -ms-overflow-style: none;      /* IE / 구형 Edge */
+}
+#main-home .layout::-webkit-scrollbar {
+    display: none;                 /* Chrome / Safari / Edge */
+}
+
 .Social-Top-Headlines{
     display : flex;
     flex-direction : column;
@@ -699,6 +715,7 @@ gap: 2px;
     display: flex;
     align-items: center;
     gap: 5px;
+    white-space: nowrap;
 }
 
 .hot-place-card .card-info .star-rating {
@@ -728,8 +745,8 @@ gap: 2px;
     position: absolute;
     top: 14px;
     right: 14px;
-    width: 24px;
-    height: 24px;
+    width: 34px;
+    height: 34px;
     display: flex;
     padding: 6px;
     justify-content: center;
@@ -738,6 +755,11 @@ gap: 2px;
     border-radius: 99px;
     z-index: 2;
     cursor: pointer;
+}
+
+.hot-place-card .card-bookmark svg {
+    width: 24px;
+    height: 24px;
 }
 
 .hot-place-card.small-card .card-bookmark {
@@ -767,3 +789,15 @@ gap: 2px;
     align-items: center;
     justify-content: center;
 }
+
+
+.star-icon {
+    width: 14px;
+    height: 14px;
+}
+
+.hot-place-card.small-card .card-info h3 {
+    font-size: 16px;   /* 대형 18 → 소형 16 */
+}
+
+
