@@ -1,0 +1,273 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>IKOKA mobile</title>
+    <link rel="stylesheet" href="css/style.css">
+    <link rel="stylesheet" href="css/style1.css">
+    <script src="js/script.js" defer></script>
+</head>
+<body>
+    <div id="app">
+
+        <section class="screen active main" id="splash">
+            <div class="splash-screen-wrapper">
+                <img src="img/main-scrin/01-nomalpng.png" alt="splash screen">
+                <div class="gradient"></div>
+                <div class="logo-txt">
+                    <div class="logo-wrap">
+                        <img src="img/logo/logo-whit.png" alt="logo">
+                    </div>
+                    <div class="txt-wrap">
+                        <h2>내 손에 쏙
+                            <br>1인 1본 가이드
+                        </h2>
+                        <h3>IKOKA</h3>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- <section class="screen" id="home"> ... </section> -->
+
+        <section class="screen main" id="login">
+            <div class="layout">
+                <div class="layout-nav"></div>
+
+                <div class="login-wrap">
+                    <div class="login-char">
+                        <img src="img/char/login-two.png" alt="login char">
+                    </div>
+                    <div class="loginbox-wrap">
+                        <div class="id-password-wrap">
+                            <div class="id">
+                                <label for="id">아이디</label>
+                                <input type="text" id="id" name="id" placeholder="아이디 혹은 이메일 입력">
+                            </div>
+                            <div class="password">
+                                <label for="password">비밀번호</label>
+                                <div class="password-input-wrap">
+                                    <input type="password" id="password" name="password" placeholder="비밀번호 입력">
+                                    <button type="button" class="toggle-pw" id="togglePw" aria-label="비밀번호 보기/숨기기">
+                                        <!-- 눈 열림 -->
+                                        <svg class="eye-icon eye-open" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                                            <path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z"/>
+                                            <circle cx="12" cy="12" r="3"/>
+                                        </svg>
+                                        <!-- 눈 감김 -->
+                                        <svg class="eye-icon eye-closed" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                                            <path d="M17.94 17.94A10.07 10.07 0 0 1 12 20c-7 0-11-8-11-8a18.45 18.45 0 0 1 5.06-5.94M9.9 4.24A9.12 9.12 0 0 1 12 4c7 0 11 8 11 8a18.5 18.5 0 0 1-2.16 3.19m-6.72-1.07a3 3 0 1 1-4.24-4.24"/>
+                                            <line x1="1" y1="1" x2="23" y2="23"/>
+                                        </svg>
+                                    </button>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="serach-wrap">
+                            <div class="search-id">
+                                <a href="#">아이디 찾기</a>
+                            </div>
+                            <div class="search-password">
+                                <a href="#">비밀번호 찾기</a>
+                            </div>
+                        </div>
+                    </div>
+                    <button type="button" class="login-btn" onclick="go('survey')">여행하러 가기</button>
+                    <div class="icon-wrap">
+                        <div class="icon">
+                            <a href="#"><img src="img/logo/icon/kakao.png" alt="kakao login"></a>
+                        </div>
+                        <div class="icon">
+                            <a href="#"><img src="img/logo/icon/naver.png" alt="naver login"></a>
+                        </div>
+                        <div class="icon">
+                            <a href="#"><img src="img/logo/icon/apple.png" alt="apple login"></a>
+                        </div>
+                    </div>
+                    <div class="join-and">
+                        <span>이메일로 가입</span>
+                        <div class="line"></div>
+                        <span>둘러보기</span>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section class="screen main" id="survey">
+            <div class="layout">
+                <div class="layout-nav">
+                    <button class="back-btn" onclick="go('login')">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none">
+                            <path d="M15 19L8 12L15 5" stroke="#222222" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+                        </svg>
+                    </button>
+                    <h3>01<span>/03</span></h3>
+                </div>
+
+                <div class="survey-wrap">
+                    <div class="title">
+                        <h2>안녕하세요!<br>
+                        이번 여행은 어떻게 시작할까요?</h2>
+                        <h4>비서는 마이페이지에서 언제든지 변경할 수 있어요.</h4>
+                    </div>
+                    <div class="choices">
+                        <div class="ai-choice-wrap">
+                            <div class="ai-img">
+                                <img class="img-off" src="img/char/dog-pick.png" alt="dog pick">
+                                <img class="img-on" src="img/char/dog-pick-on.png" alt="dog pick on">
+                            </div>
+                            <div class="ai-choice-txt">
+                                <h3>꼼꼼시바</h3>
+                                <p>알찬 여행 메이커,<br>
+                                    후회없도록 여행 계획</p>
+                            </div>
+                        </div>
+                        <div class="ai-choice-wrap">
+                            <div class="ai-img">
+                                <img class="img-off" src="img/char/cat-pick.png" alt="cat pick">
+                                <img class="img-on" src="img/char/cat-pick-on.png" alt="cat pick on">
+                            </div>
+                            <div class="ai-choice-txt">
+                                <h3>휴가냐옹</h3>
+                                <p>산책하듯 편안하게,<br>
+                                    회복하는 감성 여행</p>
+                            </div>
+                        </div>
+                    </div>
+                    <button type="button" class="btn" disabled onclick="go('booking')">다음으로</button>
+                </div>
+            </div>
+        </section>
+
+        <section class="screen main" id="booking">
+            <div class="layout">
+                <div class="layout-nav">
+                    <button class="back-btn" onclick="go('login')">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none">
+                            <path d="M15 19L8 12L15 5" stroke="#222222" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+                        </svg>
+                    </button>
+                    <h3>02<span>/03</span></h3>
+                </div>
+
+                <div class="survey-wrap">
+                    <div class="title">
+                        <h2>이코카와 함께 하는 일본 여행,
+                        <br>
+                        따로 예약 내역이 있으신가요?</h2>
+                        <h4>자세한 내용 변동은 내 페이지에서 변동 가능합니다.</h4>
+                    </div>
+                
+                    <div class="choices">
+                        <div class="ai-choice-wrap">
+                            <div class="ai-img">
+                                <img class="img" src="img/char/passport.png" alt="dog pick">
+                            </div>
+                            <div class="ai-choice-txt">
+                                <h3>티켓 예약</h3>
+                                <p>티켓을 예약했고,<br>
+                                    입력하기만 하면 돼요.</p>
+                            </div>
+                        </div>
+                        <div class="ai-choice-wrap">
+                            <div class="ai-img">
+                                <img class="img" src="img/char/Place-to-stay.png" alt="cat pick">
+                            </div>
+                            <div class="ai-choice-txt">
+                                <h3>숙소 예약</h3>
+                                <p>숙소를 예약했고,<br>
+                                    입력하기만 하면 돼요.</p>
+                            </div>
+                        </div>
+                    </div>
+                    <button type="button" class="btn" disabled onclick="go('tag-survey')">다음으로</button>
+                </div>
+            </div>
+            
+        </section>
+
+        <section class="screen main" id="tag-survey">
+            <div class="layout">
+                <div class="layout-nav">
+                    <button class="back-btn" onclick="go('login')">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none">
+                            <path d="M15 19L8 12L15 5" stroke="#222222" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+                        </svg>
+                    </button>
+                    <h3>03<span>/03</span></h3>
+                </div>
+
+                <div class="survey-wrap">
+
+                    <div class="Question-wrap">
+                        <div class="Question-1">
+                            <div class="title">
+                                <h2>누구와 함께 여행 하나요?</h2>
+                            </div>
+                        
+                            <div class="tag-wrap">
+                                <div class="tag"><span>홀로 여행</span></div>
+                                <div class="tag"><span>어린이 동반 여행</span></div>
+                                <div class="tag"><span>효도 여행</span></div>
+                                <div class="tag"><span>데이트 여행</span></div>
+                                <div class="tag"><span>대가족 여행</span></div>
+                                <div class="tag"><span>출장 여행</span></div>
+                            </div>
+                        </div>
+
+                        <div class="Question-2">
+                            <div class="title">
+                                <h2>이번 여행의 핵심 테마는 무엇인가요?</h2>
+                            </div>
+                        
+                            <div class="tag-wrap">
+                                <div class="tag"><span>식도락</span></div>
+                                <div class="tag"><span>핫플·쇼핑</span></div>
+                                <div class="tag"><span>테마파크·액티비티</span></div>
+                                <div class="tag"><span>힐링·온천</span></div>
+                                <div class="tag"><span>인생샷</span></div>
+                                <div class="tag"><span>새로운 도전</span></div>
+                                <div class="tag"><span>업무 차 방문</span></div>
+                            </div>
+                        </div>
+
+                    </div>
+                    <button type="button" class="btn" disabled onclick="go('main-home')">다음으로</button>
+                </div>
+            </div>
+            
+        </section>
+
+
+        <section class="screen main" id="main-home">
+            <div class="layout">
+                <div class="main-nav"> <!-- 최상단 네비게이터 항목 -->
+                    <div class="logo-name-wrap">
+                        <div class="main-logo">
+                            <img src="img/logo/pink-logo.png" alt="Pink Logo">
+                        </div>
+                        <h2>IKOKA</h2>
+                    </div>
+                    <div class="icon-wrap">
+                        <div class="icon"> <!-- 알림 아이콘 -->
+                            <a href="#">
+                                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none">
+                                    <path d="M15 17V18C15 19.6569 13.6569 21 12 21C10.3431 21 9 19.6569 9 18V17M15 17H9M15 17H18.5905C18.973 17 19.1652 17 19.3201 16.9478C19.616 16.848 19.8475 16.6156 19.9473 16.3198C19.9997 16.1643 19.9997 15.9715 19.9997 15.5859C19.9997 15.4172 19.9995 15.3329 19.9863 15.2524C19.9614 15.1004 19.9024 14.9563 19.8126 14.8312C19.7651 14.7651 19.7048 14.7048 19.5858 14.5858L19.1963 14.1963C19.0706 14.0706 19 13.9001 19 13.7224V10C19 6.134 15.866 2.99999 12 3C8.13401 3.00001 5 6.13401 5 10V13.7224C5 13.9002 4.92924 14.0706 4.80357 14.1963L4.41406 14.5858C4.29476 14.7051 4.23504 14.765 4.1875 14.8312C4.09766 14.9564 4.03815 15.1004 4.0132 15.2524C4 15.3329 4 15.4172 4 15.586C4 15.9715 4 16.1642 4.05245 16.3197C4.15225 16.6156 4.3848 16.848 4.68066 16.9478C4.83556 17 5.02701 17 5.40956 17H9" stroke="#9CA3AF" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                                </svg>
+                            </a>
+                        </div>
+                        <div class="icon"> <!-- 프로필 아이콘 -->
+                            <a href="#">
+                                <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 20 20" fill="none">
+                                    <path d="M15.2166 17.3323C13.9349 15.9008 12.0727 15 10 15C7.92734 15 6.06492 15.9008 4.7832 17.3323M10 19C5.02944 19 1 14.9706 1 10C1 5.02944 5.02944 1 10 1C14.9706 1 19 5.02944 19 10C19 14.9706 14.9706 19 10 19ZM10 12C8.34315 12 7 10.6569 7 9C7 7.34315 8.34315 6 10 6C11.6569 6 13 7.34315 13 9C13 10.6569 11.6569 12 10 12Z" stroke="#9CA3AF" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                                </svg>
+                            </a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </div>
+</body>
+</html>
