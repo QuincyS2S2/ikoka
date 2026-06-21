@@ -186,10 +186,13 @@
     line-height: 1;   /* line-box를 텍스트 시각 높이에 맞춰 아이콘과 수직 정렬 */
 }
 
-.icon-wrap {
+/* main-nav 내 아이콘 wrap — style.css의 전역 .icon-wrap(margin-top:56px 등) 덮어쓰기 */
+.main-nav .icon-wrap {
     display: flex;
     align-items: center;
     gap: 16px;
+    margin-top: 0;
+    justify-content: flex-end;
 }
 
 /* main-nav 내 아이콘 SVG 크기 통일 (알림 24, 프로필 20 → 모두 24) */
