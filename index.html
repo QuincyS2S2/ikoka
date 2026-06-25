@@ -1,0 +1,793 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>IKOKA mobile</title>
+    <link rel="stylesheet" href="css/style.css">
+    <link rel="stylesheet" href="css/style1.css">
+    <link rel="stylesheet" href="css/style3.css">
+    <script src="js/script.js" defer></script>
+    <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" />
+    <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
+</head>
+<body>
+    <div id="app">
+
+        <section class="screen main " id="splash">
+            <div class="splash-screen-wrapper">
+                <img src="img/main-scrin/01-nomalpng.png" alt="splash screen">
+                <div class="gradient"></div>
+                <div class="logo-txt">
+                    <div class="logo-wrap">
+                        <img src="img/logo/logo-whit.png" alt="logo">
+                    </div>
+                    <div class="txt-wrap">
+                        <h2>내 손에 쏙
+                            <br>1인 1본 가이드
+                        </h2>
+                        <h3>IKOKA</h3>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- <section class="screen" id="home"> ... </section> -->
+
+        <section class="screen main" id="login">
+            <div class="layout">
+                <div class="layout-nav"></div>
+
+                <div class="login-wrap">
+                    <div class="login-char">
+                        <img src="img/char/login-two.png" alt="login char">
+                    </div>
+                    <div class="loginbox-wrap">
+                        <div class="id-password-wrap">
+                            <div class="id">
+                                <label for="id">아이디</label>
+                                <input type="text" id="id" name="id" placeholder="아이디 혹은 이메일 입력">
+                            </div>
+                            <div class="password">
+                                <label for="password">비밀번호</label>
+                                <div class="password-input-wrap">
+                                    <input type="password" id="password" name="password" placeholder="비밀번호 입력">
+                                    <button type="button" class="toggle-pw" id="togglePw" aria-label="비밀번호 보기/숨기기">
+                                        <!-- 눈 열림 -->
+                                        <svg class="eye-icon eye-open" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                                            <path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z"/>
+                                            <circle cx="12" cy="12" r="3"/>
+                                        </svg>
+                                        <!-- 눈 감김 -->
+                                        <svg class="eye-icon eye-closed" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                                            <path d="M17.94 17.94A10.07 10.07 0 0 1 12 20c-7 0-11-8-11-8a18.45 18.45 0 0 1 5.06-5.94M9.9 4.24A9.12 9.12 0 0 1 12 4c7 0 11 8 11 8a18.5 18.5 0 0 1-2.16 3.19m-6.72-1.07a3 3 0 1 1-4.24-4.24"/>
+                                            <line x1="1" y1="1" x2="23" y2="23"/>
+                                        </svg>
+                                    </button>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="serach-wrap">
+                            <div class="search-id">
+                                <a href="#">아이디 찾기</a>
+                            </div>
+                            <div class="search-password">
+                                <a href="#">비밀번호 찾기</a>
+                            </div>
+                        </div>
+                    </div>
+                    <button type="button" class="login-btn" onclick="go('survey')">여행하러 가기</button>
+                    <div class="icon-wrap">
+                        <div class="icon">
+                            <a href="#"><img src="img/logo/icon/kakao.png" alt="kakao login"></a>
+                        </div>
+                        <div class="icon">
+                            <a href="#"><img src="img/logo/icon/naver.png" alt="naver login"></a>
+                        </div>
+                        <div class="icon">
+                            <a href="#"><img src="img/logo/icon/apple.png" alt="apple login"></a>
+                        </div>
+                    </div>
+                    <div class="join-and">
+                        <span>이메일로 가입</span>
+                        <div class="line"></div>
+                        <span>둘러보기</span>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section class="screen main" id="survey">
+            <div class="layout">
+                <div class="layout-nav">
+                    <button class="back-btn" onclick="go('login')">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none">
+                            <path d="M15 19L8 12L15 5" stroke="#222222" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+                        </svg>
+                    </button>
+                    <h3>01<span>/03</span></h3>
+                </div>
+
+                <div class="survey-wrap">
+                    <div class="title">
+                        <h2>안녕하세요!<br>
+                        이번 여행은 어떻게 시작할까요?</h2>
+                        <h4>비서는 마이페이지에서 언제든지 변경할 수 있어요.</h4>
+                    </div>
+                    <div class="choices">
+                        <div class="ai-choice-wrap">
+                            <div class="ai-img">
+                                <img class="img-off" src="img/char/dog-pick.png" alt="dog pick">
+                                <img class="img-on" src="img/char/dog-pick-on.png" alt="dog pick on">
+                            </div>
+                            <div class="ai-choice-txt">
+                                <h3>꼼꼼시바</h3>
+                                <p>알찬 여행 메이커,<br>
+                                    후회없도록 여행 계획</p>
+                            </div>
+                        </div>
+                        <div class="ai-choice-wrap">
+                            <div class="ai-img">
+                                <img class="img-off" src="img/char/cat-pick.png" alt="cat pick">
+                                <img class="img-on" src="img/char/cat-pick-on.png" alt="cat pick on">
+                            </div>
+                            <div class="ai-choice-txt">
+                                <h3>휴가냐옹</h3>
+                                <p>산책하듯 편안하게,<br>
+                                    회복하는 감성 여행</p>
+                            </div>
+                        </div>
+                    </div>
+                    <button type="button" class="btn" disabled onclick="go('booking')">다음으로</button>
+                </div>
+            </div>
+        </section>
+
+        <section class="screen main" id="booking">
+            <div class="layout">
+                <div class="layout-nav">
+                    <button class="back-btn" onclick="go('login')">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none">
+                            <path d="M15 19L8 12L15 5" stroke="#222222" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+                        </svg>
+                    </button>
+                    <h3>02<span>/03</span></h3>
+                </div>
+
+                <div class="survey-wrap">
+                    <div class="title">
+                        <h2>이코카와 함께 하는 일본 여행,
+                        <br>
+                        따로 예약 내역이 있으신가요?</h2>
+                        <h4>자세한 내용 변동은 내 페이지에서 변동 가능합니다.</h4>
+                    </div>
+                
+                    <div class="choices">
+                        <div class="ai-choice-wrap">
+                            <div class="ai-img">
+                                <img class="img" src="img/char/passport.png" alt="dog pick">
+                            </div>
+                            <div class="ai-choice-txt">
+                                <h3>티켓 예약</h3>
+                                <p>티켓을 예약했고,<br>
+                                    입력하기만 하면 돼요.</p>
+                            </div>
+                        </div>
+                        <div class="ai-choice-wrap">
+                            <div class="ai-img">
+                                <img class="img" src="img/char/Place-to-stay.png" alt="cat pick">
+                            </div>
+                            <div class="ai-choice-txt">
+                                <h3>숙소 예약</h3>
+                                <p>숙소를 예약했고,<br>
+                                    입력하기만 하면 돼요.</p>
+                            </div>
+                        </div>
+                    </div>
+                    <button type="button" class="btn" disabled onclick="go('tag-survey')">다음으로</button>
+                </div>
+            </div>
+            
+        </section>
+
+        <section class="screen main" id="tag-survey">
+            <div class="layout">
+                <div class="layout-nav">
+                    <button class="back-btn" onclick="go('login')">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none">
+                            <path d="M15 19L8 12L15 5" stroke="#222222" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+                        </svg>
+                    </button>
+                    <h3>03<span>/03</span></h3>
+                </div>
+
+                <div class="survey-wrap">
+
+                    <div class="Question-wrap">
+                        <div class="Question-1">
+                            <div class="title">
+                                <h2>누구와 함께 여행 하나요?</h2>
+                            </div>
+                        
+                            <div class="tag-wrap">
+                                <div class="tag"><span>홀로 여행</span></div>
+                                <div class="tag"><span>어린이 동반 여행</span></div>
+                                <div class="tag"><span>효도 여행</span></div>
+                                <div class="tag"><span>데이트 여행</span></div>
+                                <div class="tag"><span>대가족 여행</span></div>
+                                <div class="tag"><span>출장 여행</span></div>
+                            </div>
+                        </div>
+
+                        <div class="Question-2">
+                            <div class="title">
+                                <h2>이번 여행의 핵심 테마는 무엇인가요?</h2>
+                            </div>
+                        
+                            <div class="tag-wrap">
+                                <div class="tag"><span>식도락</span></div>
+                                <div class="tag"><span>핫플·쇼핑</span></div>
+                                <div class="tag"><span>테마파크·액티비티</span></div>
+                                <div class="tag"><span>힐링·온천</span></div>
+                                <div class="tag"><span>인생샷</span></div>
+                                <div class="tag"><span>새로운 도전</span></div>
+                                <div class="tag"><span>업무 차 방문</span></div>
+                            </div>
+                        </div>
+
+                    </div>
+                    <button type="button" class="btn" disabled onclick="go('main-home')">다음으로</button>
+                </div>
+            </div>
+            
+        </section>
+
+        <section class="screen main has-tabbar" id="main-home">
+                <div class="main-nav"> <!-- 최상단 네비게이터 항목 -->
+                    <div class="logo-name-wrap">
+                        <div class="main-logo">
+                            <img src="img/logo/pink-logo.png" alt="Pink Logo">
+                        </div>
+                        <h2>IKOKA</h2>
+                    </div>
+                    <div class="icon-wrap">
+                        <div class="icon"> <!-- 알림 아이콘 -->
+                            <a href="#">
+                                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 27 30" fill="none">
+                                <path d="M17.9378 22.5278V24.0833C17.9378 26.6607 15.8391 28.75 13.2502 28.75C10.6613 28.75 8.56264 26.6607 8.56264 24.0833V22.5278M17.9378 22.5278H8.56264M17.9378 22.5278H23.5481C24.1458 22.5278 24.446 22.5278 24.6881 22.4465C25.1504 22.2913 25.5121 21.9299 25.668 21.4697C25.75 21.2278 25.75 20.9279 25.75 20.3281C25.75 20.0657 25.7497 19.9345 25.7291 19.8094C25.6901 19.5729 25.5979 19.3487 25.4575 19.1541C25.3834 19.0513 25.2891 18.9574 25.1033 18.7724L24.4946 18.1664C24.2983 17.971 24.1879 17.7058 24.1879 17.4293V11.6389C24.1879 5.62511 19.2909 0.749985 13.2502 0.75C7.20951 0.750015 2.31253 5.62513 2.31253 11.6389V17.4293C2.31253 17.7058 2.20197 17.971 2.00559 18.1664L1.39698 18.7723C1.21057 18.9579 1.11726 19.0512 1.04297 19.1542C0.902589 19.3488 0.809604 19.5729 0.770626 19.8094C0.75 19.9345 0.75 20.0657 0.75 20.3282C0.75 20.9279 0.75 21.2277 0.831958 21.4696C0.987895 21.9298 1.35126 22.2913 1.81356 22.4465C2.05558 22.5278 2.35474 22.5278 2.95247 22.5278H8.56264" stroke="#9CA3AF" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+                                </svg>
+                            </a>
+                        </div>
+                        <div class="icon"> <!-- 프로필 아이콘 -->
+                            <a href="#">
+                                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 28 28" fill="none">
+                                <path d="M21.2851 24.3411C19.4338 22.2734 16.7438 20.9722 13.75 20.9722C10.7562 20.9722 8.066 22.2734 6.21463 24.3411M13.75 26.75C6.5703 26.75 0.75 20.9297 0.75 13.75C0.75 6.5703 6.5703 0.75 13.75 0.75C20.9297 0.75 26.75 6.5703 26.75 13.75C26.75 20.9297 20.9297 26.75 13.75 26.75ZM13.75 16.6389C11.3568 16.6389 9.41667 14.6988 9.41667 12.3056C9.41667 9.91232 11.3568 7.97222 13.75 7.97222C16.1432 7.97222 18.0833 9.91232 18.0833 12.3056C18.0833 14.6988 16.1432 16.6389 13.75 16.6389Z" stroke="#9CA3AF" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+                                </svg>
+                            </a>
+                        </div>
+                    </div>
+                </div>
+    
+            <div class="layout">
+    
+
+                <div class="main-wrap">
+                    <div class="Top-main-card">
+                        <div class="card-shadow">
+                            <div class="img-shadow">
+                                <img src="img/char/card-img.png" alt="card-shadow">
+                            </div>
+                            <div class="img-card">
+                                <img src="img/char/card-img.png" alt="card-img">
+                            </div>
+                            <div class="card-gradient"></div>
+                        </div>
+                        <div class="card-in-txt">
+                            <div class="day-information">
+                                <div class="where-day">
+                                    <span>오사카</span>
+                                    <span>3박 4일</span>
+                                </div>
+                                <div class="day-sun">
+                                    <div class="icon">
+                                        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none">
+                                                <path d="M15.25 12C15.25 10.2051 13.7949 8.75 12 8.75C10.2051 8.75 8.75 10.2051 8.75 12C8.75 13.7949 10.2051 15.25 12 15.25C13.7949 15.25 15.25 13.7949 15.25 12ZM16.75 12C16.75 14.6234 14.6234 16.75 12 16.75C9.37665 16.75 7.25 14.6234 7.25 12C7.25 9.37665 9.37665 7.25 12 7.25C14.6234 7.25 16.75 9.37665 16.75 12Z" fill="white"/>
+                                                <path d="M12.0098 3.25C12.424 3.25 12.7598 3.58579 12.7598 4C12.7598 4.41421 12.424 4.75 12.0098 4.75H12C11.5858 4.75 11.25 4.41421 11.25 4C11.25 3.58579 11.5858 3.25 12 3.25H12.0098Z" fill="white"/>
+                                                <path d="M20.0098 11.25C20.424 11.25 20.7598 11.5858 20.7598 12C20.7598 12.4142 20.424 12.75 20.0098 12.75H20C19.5858 12.75 19.25 12.4142 19.25 12C19.25 11.5858 19.5858 11.25 20 11.25H20.0098Z" fill="white"/>
+                                                <path d="M12.0098 19.25C12.424 19.25 12.7598 19.5858 12.7598 20C12.7598 20.4142 12.424 20.75 12.0098 20.75H12C11.5858 20.75 11.25 20.4142 11.25 20C11.25 19.5858 11.5858 19.25 12 19.25H12.0098Z" fill="white"/>
+                                                <path d="M4.00977 11.25C4.42398 11.25 4.75977 11.5858 4.75977 12C4.75977 12.4142 4.42398 12.75 4.00977 12.75H4C3.58579 12.75 3.25 12.4142 3.25 12C3.25 11.5858 3.58579 11.25 4 11.25H4.00977Z" fill="white"/>
+                                                <path d="M17.6668 5.593C18.081 5.593 18.4168 5.92879 18.4168 6.343C18.4168 6.75721 18.081 7.093 17.6668 7.093H17.657C17.2428 7.093 16.907 6.75721 16.907 6.343C16.907 5.92879 17.2428 5.593 17.657 5.593H17.6668Z" fill="white"/>
+                                                <path d="M17.6668 16.907C18.081 16.907 18.4168 17.2428 18.4168 17.657C18.4168 18.0712 18.081 18.407 17.6668 18.407H17.657C17.2428 18.407 16.907 18.0712 16.907 17.657C16.907 17.2428 17.2428 16.907 17.657 16.907H17.6668Z" fill="white"/>
+                                                <path d="M6.35277 16.907C6.76698 16.907 7.10277 17.2428 7.10277 17.657C7.10277 18.0712 6.76698 18.407 6.35277 18.407H6.343C5.92879 18.407 5.593 18.0712 5.593 17.657C5.593 17.2428 5.92879 16.907 6.343 16.907H6.35277Z" fill="white"/>
+                                                <path d="M6.35277 5.593C6.76698 5.593 7.10277 5.92879 7.10277 6.343C7.10277 6.75721 6.76698 7.093 6.35277 7.093H6.343C5.92879 7.093 5.593 6.75721 5.593 6.343C5.593 5.92879 5.92879 5.593 6.343 5.593H6.35277Z" fill="white"/>
+                                        </svg>
+                                    </div>
+                                    <span>32℃</span>
+                                </div>
+                            </div>
+                            <h2>여행 2일차</h2>
+                            <div class="next-schedule-group">
+                                <div class="icon-schedule">
+                                    <div class="icon-pin">
+                                        <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 16 16" fill="none">
+                                        <path d="M0.75 14.751L4.35167 11.1489M4.35491 11.1456C4.1506 10.9418 3.00445 9.79538 2.19284 8.98351C1.45087 8.24131 2.1975 6.65268 3.21189 6.58867C4.12811 6.53086 6.2487 6.86289 6.95391 6.15761L8.89049 4.22083C9.37111 3.74017 9.06619 2.66497 9.03461 2.07209C8.98994 1.28196 10.2464 0.30594 10.9129 0.972521L14.5278 4.58774C15.1964 5.25474 14.217 6.50805 13.4283 6.46624C12.8355 6.43466 11.7604 6.12971 11.2798 6.61037L9.34321 8.54715C8.63812 9.25231 8.97001 11.3725 8.9122 12.2886C8.84818 13.3032 7.2591 14.0501 6.51697 13.3079C5.70536 12.4962 4.55922 11.3499 4.35491 11.1456Z" stroke="white" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+                                        </svg>
+                                    </div>
+                                <span>다음일정</span>
+                                </div>
+                                <span>10:00 도톤보리 산책</span>
+                            </div>
+                            <div class="today-schedule">
+                                <h3>오늘 일정 보기</h3>
+                                <div class="icon">
+                                    <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 14 14" fill="none">
+                                    <path d="M13.0207 1.00001C13.0207 0.447727 12.573 1.2137e-05 12.0207 1.18841e-05L3.02074 1.26849e-05C2.46845 1.23477e-05 2.02074 0.447728 2.02074 1.00001C2.02074 1.5523 2.46846 2.00001 3.02074 2.00001L11.0207 2.00001L11.0207 10C11.0207 10.5523 11.4685 11 12.0207 11C12.573 11 13.0207 10.5523 13.0207 10L13.0207 1.00001ZM0.707031 12.3137L1.41414 13.0208L12.7278 1.70712L12.0207 1.00001L11.3136 0.292906L-7.55191e-05 11.6066L0.707031 12.3137Z" fill="#3B82F6"/>
+                                    </svg>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="pass-and-coupon"> 
+                        <div class="ikoka-pass">
+                                <div class="pass-txt">
+                                    <h2>이코카 패스</h2>
+                                    <div class="reset">
+                                        <span>00:00 만료</span>
+                                        <div class="icon">
+                                            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none">
+                                            <path d="M4.0498 11.0001C4.30269 9.0708 5.25003 7.29984 6.71448 6.01868C8.17894 4.73753 10.0601 4.03401 12.0059 4.03983C13.9516 4.04565 15.8286 4.7604 17.2853 6.05029C18.7421 7.34018 19.6788 9.11678 19.9202 11.0475C20.1615 12.9783 19.6909 14.9308 18.5965 16.5396C17.5021 18.1483 15.8588 19.3031 13.9744 19.7877C12.0899 20.2723 10.0934 20.0535 8.35868 19.1722C6.62392 18.291 5.2698 16.8077 4.5498 15.0001M4.0498 20.0001V15.0001H9.0498" stroke="#9CA3AF" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+                                            </svg>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="barcode">
+                                    <img src="img/char/barcode.png" alt="barcode">
+                                </div>
+                        </div>
+
+                        <div class="User-coupon">
+                            <div class="coupon-info">
+                                <div class="coupon-info-txt">
+                                    <div class="icon-box-wrap">
+                                        <div class="icon">
+                                            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none">
+                                                <path d="M12 22.5V19.5" stroke="#FF8E8E" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                                                <path d="M12 19.5C16.1421 19.5 19.5 16.1421 19.5 12C19.5 7.85786 16.1421 4.5 12 4.5C7.85786 4.5 4.5 7.85786 4.5 12C4.5 16.1421 7.85786 19.5 12 19.5Z" stroke="#FF8E8E" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                                                <path d="M12 1.5V4.5" stroke="#FF8E8E" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                                                <path d="M1.5 12H4.5" stroke="#FF8E8E" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                                                <path d="M22.5 12H19.5" stroke="#FF8E8E" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                                            </svg>
+                                        </div>
+                                    </div>
+                                    <div class="coupon-txt-box">
+                                        <h2>지금 받을 수 있는 쿠폰</h2>
+                                        <h4>500m 이내 최대 20% 할인까지</h4>
+                                    </div>
+                                </div>
+                                <div class="count-box">
+                                    <span>12개</span>
+                                    <div class="icon">
+                                        <svg xmlns="http://www.w3.org/2000/svg" width="8" height="14" viewBox="0 0 8 14" fill="none">
+                                        <path d="M0.75 0.75L6.75 6.75L0.75 12.75" stroke="#222222" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+                                        </svg>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+
+                    <div class="Social-Top-Headlines">
+                        <div class="headline-title">
+                            <h1>지금 핫한 곳</h1>
+                            <div class="view-more">
+                                <span>전체보기</span>
+                            </div>
+                        </div>
+                        <div class="Social-Top-post-content">
+                            <div class="hot-place-list">
+                                <!-- 대형 카드 -->
+                                <div class="hot-place-card large-card">
+                                    <div class="card-image">
+                                        <img src="img/main-scrin/social/dotonbori-bg.png" alt="도톤보리">
+                                        <div class="card-overlay"></div>
+                                    </div>
+                                    <div class="card-badge">
+                                        <div class="badge-icon">
+                                            <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 16 16" fill="none">
+                                                <path d="M8 1.5C8 1.5 8 4.5 5.5 6C4 7 3 8.5 3 10.5C3 13 5.5 14.5 8 14.5C10.5 14.5 13 13 13 10.5C13 8.5 12 7 10.5 6C8 4.5 8 1.5 8 1.5Z" fill="white"/>
+                                            </svg>
+                                        </div>
+                                        <span>핫플등록</span>
+                                    </div>
+                                    <div class="card-info">
+                                        <h3>도톤보리</h3>
+                                        <div class="rating-container">
+                                            <div class="star-rating">
+                                                <div class="star-icon">
+                                                        <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 14 14" fill="none">
+                                                        <path d="M8.01082 2.04754L9.03749 4.10087C9.17749 4.38671 9.55082 4.66087 9.86582 4.71337L11.7267 5.02254C12.9167 5.22087 13.1967 6.08421 12.3392 6.93587L10.8925 8.38254C10.6475 8.62754 10.5133 9.10004 10.5892 9.43837L11.0033 11.2292C11.33 12.6467 10.5775 13.195 9.32332 12.4542L7.57915 11.4217C7.26415 11.235 6.74499 11.235 6.42416 11.4217L4.67999 12.4542C3.43166 13.195 2.67332 12.6409 2.99999 11.2292L3.41416 9.43837C3.48999 9.10004 3.35582 8.62754 3.11082 8.38254L1.66416 6.93587C0.812489 6.08421 1.08666 5.22087 2.27666 5.02254L4.13749 4.71337C4.44666 4.66087 4.81999 4.38671 4.95999 4.10087L5.98666 2.04754C6.54666 0.933372 7.45666 0.933372 8.01082 2.04754Z" fill="#FBC01D"/>
+                                                        </svg>
+                                                </div>
+                                                <span>4.9</span>
+                                            </div>
+                                            <span class="review-count">(2,841)</span>
+                                            <span class="category">관광지</span>
+                                        </div>
+                                    </div>
+                                    <div class="card-bookmark">
+                                        <svg xmlns="http://www.w3.org/2000/svg" width="20" height="18" viewBox="0 0 20 18" fill="none">
+                                            <path d="M10 4.15428C8 -0.540161 1 -0.0401611 1 5.95987C1 11.9599 10 16.9601 10 16.9601C10 16.9601 19 11.9599 19 5.95987C19 -0.0401611 12 -0.540161 10 4.15428Z" stroke="#222222" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                                        </svg>
+                                    </div>
+                                </div>
+
+                                <!-- 소형 카드 2개 -->
+                                <div class="hot-place-card-row">
+                                    <div class="hot-place-card small-card">
+                                        <div class="card-image">
+                                            <img src="img/main-scrin/social/osaka-castle-bg.png" alt="오사카성">
+                                            <div class="card-overlay"></div>
+                                        </div>
+                                        <div class="card-info">
+                                            <h3>오사카성</h3>
+                                            <div class="rating-container">
+                                                <div class="star-rating">
+                                                    <div class="star-icon">
+                                                        <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 14 14" fill="none">
+                                                        <path d="M8.01082 2.04754L9.03749 4.10087C9.17749 4.38671 9.55082 4.66087 9.86582 4.71337L11.7267 5.02254C12.9167 5.22087 13.1967 6.08421 12.3392 6.93587L10.8925 8.38254C10.6475 8.62754 10.5133 9.10004 10.5892 9.43837L11.0033 11.2292C11.33 12.6467 10.5775 13.195 9.32332 12.4542L7.57915 11.4217C7.26415 11.235 6.74499 11.235 6.42416 11.4217L4.67999 12.4542C3.43166 13.195 2.67332 12.6409 2.99999 11.2292L3.41416 9.43837C3.48999 9.10004 3.35582 8.62754 3.11082 8.38254L1.66416 6.93587C0.812489 6.08421 1.08666 5.22087 2.27666 5.02254L4.13749 4.71337C4.44666 4.66087 4.81999 4.38671 4.95999 4.10087L5.98666 2.04754C6.54666 0.933372 7.45666 0.933372 8.01082 2.04754Z" fill="#FBC01D"/>
+                                                        </svg>
+                                                    </div>
+                                                    <span>4.2</span>
+                                                </div>
+                                                <span class="review-count">(1,841)</span>
+                                                <span class="category">관광지</span>
+                                            </div>
+                                        </div>
+                                        <div class="card-bookmark">
+                                            <svg xmlns="http://www.w3.org/2000/svg" width="20" height="18" viewBox="0 0 20 18" fill="none">
+                                            <path d="M10 4.15428C8 -0.540161 1 -0.0401611 1 5.95987C1 11.9599 10 16.9601 10 16.9601C10 16.9601 19 11.9599 19 5.95987C19 -0.0401611 12 -0.540161 10 4.15428Z" stroke="#222222" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                                            </svg>
+                                        </div>
+                                    </div>
+
+                                    <div class="hot-place-card small-card">
+                                        <div class="card-image">
+                                            <img src="img/main-scrin/social/kuromon-market-bg.png" alt="구로몬 시장">
+                                            <div class="card-overlay"></div>
+                                        </div>
+                                        <div class="card-info">
+                                            <h3>구로몬 시장</h3>
+                                            <div class="rating-container">
+                                                <div class="star-rating">
+                                                    <div class="star-icon">
+                                                        <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 14 14" fill="none">
+                                                        <path d="M8.01082 2.04754L9.03749 4.10087C9.17749 4.38671 9.55082 4.66087 9.86582 4.71337L11.7267 5.02254C12.9167 5.22087 13.1967 6.08421 12.3392 6.93587L10.8925 8.38254C10.6475 8.62754 10.5133 9.10004 10.5892 9.43837L11.0033 11.2292C11.33 12.6467 10.5775 13.195 9.32332 12.4542L7.57915 11.4217C7.26415 11.235 6.74499 11.235 6.42416 11.4217L4.67999 12.4542C3.43166 13.195 2.67332 12.6409 2.99999 11.2292L3.41416 9.43837C3.48999 9.10004 3.35582 8.62754 3.11082 8.38254L1.66416 6.93587C0.812489 6.08421 1.08666 5.22087 2.27666 5.02254L4.13749 4.71337C4.44666 4.66087 4.81999 4.38671 4.95999 4.10087L5.98666 2.04754C6.54666 0.933372 7.45666 0.933372 8.01082 2.04754Z" fill="#FBC01D"/>
+                                                        </svg>
+                                                    </div>
+                                                    <span>4.2</span>
+                                                </div>
+                                                <span class="review-count">(1,841)</span>
+                                                <span class="category">관광지</span>
+                                            </div>
+                                        </div>
+                                        <div class="card-bookmark">
+                                            <svg xmlns="http://www.w3.org/2000/svg" width="20" height="18" viewBox="0 0 20 18" fill="none">
+                                                <path d="M10 4.15428C8 -0.540161 1 -0.0401611 1 5.95987C1 11.9599 10 16.9601 10 16.9601C10 16.9601 19 11.9599 19 5.95987C19 -0.0401611 12 -0.540161 10 4.15428Z" stroke="#222222" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                                            </svg>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="show-more-btn">
+                                <span>더보기</span>
+                                <div class="show-more-icon">
+                                    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none">
+                                        <path d="M6 9L12 15L18 9" stroke="#222222" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+                                    </svg>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+
+                    <div class="community-hot-headlines">
+                        <div class="headline-title">
+                            <h1>커뮤니티 HOT</h1>
+                            <div class="view-more">
+                                <span>전체보기</span>
+                            </div>
+                        </div>
+                        <div class="Social-SNS-post-content">
+                            <div class="hot-SNS-list">
+                                <div class="sns-post-card"> <!--타누키 sns 사용자 카드-->
+                                    <div class="profil">
+                                        <div class="profil-wrap">
+                                            <div class="profil-img">
+                                                <img src="img/main-scrin/profil.png" alt="Profile Image">
+                                            </div>
+                                            <div class="profil-name"><span>타누키</span></div>
+                                        </div>
+                                        <div class="icon"> <!-- 팔로우 아이콘-->
+                                            <svg xmlns="http://www.w3.org/2000/svg" width="21" height="19" viewBox="0 0 21 19" fill="none">
+                                                <path fill-rule="evenodd" clip-rule="evenodd" d="M4.00008 4.9C4.00008 2.1938 6.19387 0 8.90006 0C11.6062 0 13.8 2.1938 13.8 4.9C13.8 7.6062 11.6062 9.8 8.90006 9.8C6.19387 9.8 4.00008 7.6062 4.00008 4.9ZM8.90006 1.8C7.18798 1.8 5.80007 3.18792 5.80007 4.9C5.80007 6.61208 7.18798 8 8.90006 8C10.6121 8 12 6.61208 12 4.9C12 3.18792 10.6121 1.8 8.90006 1.8Z" fill="#5F6368"/>
+                                                <path fill-rule="evenodd" clip-rule="evenodd" d="M2.81633 12.3205C4.4306 11.451 6.58804 10.9984 8.89997 10.9984C11.2119 10.9984 13.3693 11.451 14.9836 12.3205C16.5967 13.1895 17.7999 14.5646 17.7999 16.3984L17.7999 16.7253C17.8 16.912 17.8 17.102 17.7867 17.2644C17.772 17.4451 17.7364 17.6693 17.6201 17.8976C17.4619 18.208 17.2095 18.4604 16.8991 18.6186C16.6709 18.7349 16.4466 18.7705 16.2659 18.7853C16.1035 18.7986 15.9135 18.7986 15.7268 18.7985L2.07333 18.7993C1.88668 18.7994 1.69665 18.7994 1.53421 18.7862C1.35348 18.7714 1.12923 18.7359 0.900979 18.6196C0.590494 18.4614 0.33806 18.209 0.179858 17.8985C0.0635559 17.6702 0.0279802 17.446 0.0132139 17.2653C-5.86442e-05 17.1028 -2.75906e-05 16.9128 2.9269e-06 16.7261L5.90712e-06 16.3984C5.90712e-06 14.5646 1.20321 13.1895 2.81633 12.3205ZM3.66995 13.9053C2.38765 14.596 1.8 15.4708 1.8 16.3984L1.80181 16.9975L15.9981 16.9967L15.9999 16.3984C15.9999 15.4708 15.4123 14.596 14.13 13.9053C12.8489 13.2152 11.0063 12.7984 8.89997 12.7984C6.79364 12.7984 4.95109 13.2152 3.66995 13.9053Z" fill="#5F6368"/>
+                                                <path d="M18.3001 5.89941C18.3001 5.40236 17.8972 4.99941 17.4001 4.99941C16.9031 4.99941 16.5001 5.40236 16.5001 5.89941V7.49941H14.9001C14.4031 7.49941 14.0002 7.90236 14.0002 8.39941C14.0002 8.89647 14.4031 9.29941 14.9001 9.29941H16.5001V10.8994C16.5001 11.3965 16.9031 11.7994 17.4001 11.7994C17.8972 11.7994 18.3001 11.3965 18.3001 10.8994V9.29941H19.9001C20.3972 9.29941 20.8001 8.89647 20.8001 8.39941C20.8001 7.90236 20.3972 7.49941 19.9001 7.49941H18.3001V5.89941Z" fill="#5F6368"/>
+                                            </svg>
+                                        </div>
+                                    </div>
+                                    <div class="post-content">
+                                        <div class="post-txt">
+                                            <p>일본 왔으니 일식 먹어야 한다고 생각해왔다. 일곱 번의 일본 여행을 거치는동안 내가 먹었던 건 스시 뿐이었다. 그런데 이번 여행에서 처음으로 양식을 도전해 먹었는데 아뿔싸 정말 너무 맛있었던 것이다.</p>
+                                        </div>
+                                        <div class="post-img">
+                                            <img src="img/main-scrin/food-img.jpg" alt="food">
+                                        </div>
+                                    </div>
+                                    <div class="location-info">
+                                        <div class="location-when">
+                                            <div class="img-thumbnail">
+                                                <img src="img/main-scrin/img-wher.png" alt="location thumbnail">
+                                            </div>
+                                            <div class="location-txt">
+                                                <div class="txt-wrap">
+                                                    <h1>오오사카 도톤보리현</h1>
+                                                    <h2>홋쿄쿠세이 신사이바시 본점</h2>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="information-mark"> <!--슬러쉬 버튼-->
+                                            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none">
+                                                <path d="M9 5L16 12L9 19" stroke="#5F6368" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+                                            </svg>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="sns-post-card"> <!--원숭이 sns 사용자 카드-->
+                                    <div class="profil">
+                                        <div class="profil-wrap">
+                                            <div class="profil-img">
+                                                <img src="img/main-scrin/profil2.png" alt="Profile Image">
+                                            </div>
+                                            <div class="profil-name"><span>성나성원숭</span></div>
+                                        </div>
+                                        <div class="icon"> <!-- 팔로우 아이콘-->
+                                            <svg xmlns="http://www.w3.org/2000/svg" width="21" height="19" viewBox="0 0 21 19" fill="none">
+                                                <path fill-rule="evenodd" clip-rule="evenodd" d="M4.00008 4.9C4.00008 2.1938 6.19387 0 8.90006 0C11.6062 0 13.8 2.1938 13.8 4.9C13.8 7.6062 11.6062 9.8 8.90006 9.8C6.19387 9.8 4.00008 7.6062 4.00008 4.9ZM8.90006 1.8C7.18798 1.8 5.80007 3.18792 5.80007 4.9C5.80007 6.61208 7.18798 8 8.90006 8C10.6121 8 12 6.61208 12 4.9C12 3.18792 10.6121 1.8 8.90006 1.8Z" fill="#5F6368"/>
+                                                <path fill-rule="evenodd" clip-rule="evenodd" d="M2.81633 12.3205C4.4306 11.451 6.58804 10.9984 8.89997 10.9984C11.2119 10.9984 13.3693 11.451 14.9836 12.3205C16.5967 13.1895 17.7999 14.5646 17.7999 16.3984L17.7999 16.7253C17.8 16.912 17.8 17.102 17.7867 17.2644C17.772 17.4451 17.7364 17.6693 17.6201 17.8976C17.4619 18.208 17.2095 18.4604 16.8991 18.6186C16.6709 18.7349 16.4466 18.7705 16.2659 18.7853C16.1035 18.7986 15.9135 18.7986 15.7268 18.7985L2.07333 18.7993C1.88668 18.7994 1.69665 18.7994 1.53421 18.7862C1.35348 18.7714 1.12923 18.7359 0.900979 18.6196C0.590494 18.4614 0.33806 18.209 0.179858 17.8985C0.0635559 17.6702 0.0279802 17.446 0.0132139 17.2653C-5.86442e-05 17.1028 -2.75906e-05 16.9128 2.9269e-06 16.7261L5.90712e-06 16.3984C5.90712e-06 14.5646 1.20321 13.1895 2.81633 12.3205ZM3.66995 13.9053C2.38765 14.596 1.8 15.4708 1.8 16.3984L1.80181 16.9975L15.9981 16.9967L15.9999 16.3984C15.9999 15.4708 15.4123 14.596 14.13 13.9053C12.8489 13.2152 11.0063 12.7984 8.89997 12.7984C6.79364 12.7984 4.95109 13.2152 3.66995 13.9053Z" fill="#5F6368"/>
+                                                <path d="M18.3001 5.89941C18.3001 5.40236 17.8972 4.99941 17.4001 4.99941C16.9031 4.99941 16.5001 5.40236 16.5001 5.89941V7.49941H14.9001C14.4031 7.49941 14.0002 7.90236 14.0002 8.39941C14.0002 8.89647 14.4031 9.29941 14.9001 9.29941H16.5001V10.8994C16.5001 11.3965 16.9031 11.7994 17.4001 11.7994C17.8972 11.7994 18.3001 11.3965 18.3001 10.8994V9.29941H19.9001C20.3972 9.29941 20.8001 8.89647 20.8001 8.39941C20.8001 7.90236 20.3972 7.49941 19.9001 7.49941H18.3001V5.89941Z" fill="#5F6368"/>
+                                            </svg>
+                                        </div>
+                                    </div>
+                                    <div class="post-content">
+                                        <div class="post-txt">
+                                            <p>후쿠타로의 오코노미야끼는 그야말로 내 마음을 뒤흔드는 매력이 있었다. 대기 시간은 30분, 식사 시간은 1시간 30분이었는데 오코노미야끼 뿐만 아니라 전반적인</p>
+                                        </div>
+                                        <div class="post-img">
+                                            <img src="img/main-scrin/food-img2.png" alt="food">
+                                        </div>
+                                    </div>
+                                    <div class="location-info">
+                                        <div class="location-when">
+                                            <div class="img-thumbnail">
+                                                <img src="img/main-scrin/img-wher2.png" alt="location thumbnail">
+                                            </div>
+                                            <div class="location-txt">
+                                                <div class="txt-wrap">
+                                                    <h1>오오사카 난바와 우메다</h1>
+                                                    <h2>후쿠타로</h2>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="information-mark"> <!--슬러쉬 버튼-->
+                                            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none">
+                                                <path d="M9 5L16 12L9 19" stroke="#5F6368" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+                                            </svg>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="show-more-btn">
+                                <span>더보기</span>
+                                <div class="show-more-icon">
+                                    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none">
+                                        <path d="M6 9L12 15L18 9" stroke="#222222" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+                                    </svg>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="search-section">
+                
+                    <div class="search-dog">
+                        <img src="img/main-scrin/dog-think.png" alt="IKOKA AI 비서"
+                            onerror="this.style.display='none';this.nextElementSibling.style.display='flex';">
+                        <div class="dog-fallback">🐕</div>
+                    </div>
+                
+                    <div class="search-bar-wrap">
+                        <div class="search-bar">
+                        <svg width="22" height="22" viewBox="0 0 24 24" fill="none">
+                            <circle cx="11" cy="11" r="7" stroke="#FF8E8E" stroke-width="2.2"/>
+                            <line x1="16.5" y1="16.5" x2="21" y2="21" stroke="#FF8E8E" stroke-width="2.2" stroke-linecap="round"/>
+                        </svg>
+                        <input type="text" placeholder="무엇이든 간단하게 AI 비서가 찾아드려요!">
+                        </div>
+                    </div>
+                
+                    <div class="search-chips">
+                        <button class="chip">이 지역 맛집 찾아줘</button>
+                        <button class="chip">열차 노선 찾아줘</button>
+                        <button class="chip">물건 주문해줘</button>
+                    </div>
+                
+                    </div>
+
+                    
+                    <footer class="footer">
+                    
+                        <div class="footer-brand">
+                        <span class="tagline">AI와 함께하는 가장 가까운 일본 여행</span>
+                        <span class="name">IKOKA</span>
+                        </div>
+                    
+                        <nav class="footer-menu">
+                        <a href="#">공지사항
+                            <svg width="24" height="24" viewBox="0 0 24 24" fill="none"><path d="M9 5L16 12L9 19" stroke="#9CA3AF" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
+                        </a>
+                        <a href="#">자주 묻는 질문
+                            <svg width="24" height="24" viewBox="0 0 24 24" fill="none"><path d="M9 5L16 12L9 19" stroke="#9CA3AF" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
+                        </a>
+                        <a href="#">1:1 문의하기
+                            <svg width="24" height="24" viewBox="0 0 24 24" fill="none"><path d="M9 5L16 12L9 19" stroke="#9CA3AF" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
+                        </a>
+                        <a href="#">제휴·광고 문의
+                            <svg width="24" height="24" viewBox="0 0 24 24" fill="none"><path d="M9 5L16 12L9 19" stroke="#9CA3AF" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
+                        </a>
+                        </nav>
+                    
+                        <hr class="footer-divider">
+                    
+                        <div class="footer-cs">
+                        <span class="label">고객센터</span>
+                        <span class="tel">1588-0000</span>
+                        <span class="hours">평일 10:00 – 18:00 · 주말·공휴일 휴무</span>
+                        </div>
+                    
+                        <div class="footer-info">
+                        <p>(주)이코카 · 대표 김이코</p>
+                        <p>사업자등록번호 000-00-00000</p>
+                        <p>통신판매업신고 2026-서울강남-00000</p>
+                        <p>관광사업등록 제0000호 (종합여행업)</p>
+                        <p>서울특별시 강남구 테헤란로 000, 00층</p>
+                        </div>
+                    
+                        <div class="footer-legal">
+                        <div class="footer-policy">
+                            <a href="#">이용약관</a><span>·</span>
+                            <a href="#" class="strong">개인정보처리방침</a><span>·</span>
+                            <a href="#">위치기반서비스 이용약관</a>
+                        </div>
+                        <span class="footer-copy">© 2026 IKOKA Inc. All rights reserved.</span>
+                        </div>
+                    
+                        <button class="footer-lang">
+                        한국어
+                        <svg width="16" height="16" viewBox="0 0 24 24" fill="none"><path d="M6 9L12 15L18 9" stroke="#9CA3AF" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
+                        </button>
+                    
+                    </footer>
+
+
+                </div>
+            </div>
+        </section>
+        
+        <section class="screen main has-tabbar active" id="main-Schedule-Management">
+            <div class="main-nav"> <!-- 최상단 네비게이터 항목 -->
+                <div class="logo-name-wrap">
+                    <div class="main-logo">
+                        <img src="img/logo/pink-logo.png" alt="Pink Logo">
+                    </div>
+                    <h2>IKOKA</h2>
+                </div>
+                <div class="icon-wrap">
+                    <div class="icon"> <!-- 알림 아이콘 -->
+                        <a href="#">
+                            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 27 30" fill="none">
+                            <path d="M17.9378 22.5278V24.0833C17.9378 26.6607 15.8391 28.75 13.2502 28.75C10.6613 28.75 8.56264 26.6607 8.56264 24.0833V22.5278M17.9378 22.5278H8.56264M17.9378 22.5278H23.5481C24.1458 22.5278 24.446 22.5278 24.6881 22.4465C25.1504 22.2913 25.5121 21.9299 25.668 21.4697C25.75 21.2278 25.75 20.9279 25.75 20.3281C25.75 20.0657 25.7497 19.9345 25.7291 19.8094C25.6901 19.5729 25.5979 19.3487 25.4575 19.1541C25.3834 19.0513 25.2891 18.9574 25.1033 18.7724L24.4946 18.1664C24.2983 17.971 24.1879 17.7058 24.1879 17.4293V11.6389C24.1879 5.62511 19.2909 0.749985 13.2502 0.75C7.20951 0.750015 2.31253 5.62513 2.31253 11.6389V17.4293C2.31253 17.7058 2.20197 17.971 2.00559 18.1664L1.39698 18.7723C1.21057 18.9579 1.11726 19.0512 1.04297 19.1542C0.902589 19.3488 0.809604 19.5729 0.770626 19.8094C0.75 19.9345 0.75 20.0657 0.75 20.3282C0.75 20.9279 0.75 21.2277 0.831958 21.4696C0.987895 21.9298 1.35126 22.2913 1.81356 22.4465C2.05558 22.5278 2.35474 22.5278 2.95247 22.5278H8.56264" stroke="#9CA3AF" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+                            </svg>
+                        </a>
+                    </div>
+                    <div class="icon"> <!-- 프로필 아이콘 -->
+                        <a href="#">
+                            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 28 28" fill="none">
+                            <path d="M21.2851 24.3411C19.4338 22.2734 16.7438 20.9722 13.75 20.9722C10.7562 20.9722 8.066 22.2734 6.21463 24.3411M13.75 26.75C6.5703 26.75 0.75 20.9297 0.75 13.75C0.75 6.5703 6.5703 0.75 13.75 0.75C20.9297 0.75 26.75 6.5703 26.75 13.75C26.75 20.9297 20.9297 26.75 13.75 26.75ZM13.75 16.6389C11.3568 16.6389 9.41667 14.6988 9.41667 12.3056C9.41667 9.91232 11.3568 7.97222 13.75 7.97222C16.1432 7.97222 18.0833 9.91232 18.0833 12.3056C18.0833 14.6988 16.1432 16.6389 13.75 16.6389Z" stroke="#9CA3AF" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+                            </svg>
+                        </a>
+                    </div>
+                </div>
+            </div>
+            <div class="layout">
+                <div class="schedule-main"> <!--최상단 일정 적는 곳-->
+                    <div class="main-schedule-infor">
+                        <div class="schedule-name">
+                            <h2>강동원님의 <span>오사카 여행</span></h2>
+                            <h1>D+2 일정</h1>
+                        </div>
+                        <div class="day-date">
+                            <span>2026.06.01 - 2026.06.04</span>
+                        </div>
+                    </div>
+                    <div class="schedule-discussion">
+                        <div class="icon">
+                            <svg xmlns="http://www.w3.org/2000/svg" width="26" height="26" viewBox="0 0 26 26" fill="none">
+                            <path d="M6.38845 21.4371L8.08175 20.14L8.0942 20.1309C8.44721 19.8605 8.62534 19.724 8.82409 19.6268C9.0024 19.5396 9.19253 19.4761 9.38867 19.4375C9.60975 19.3941 9.84004 19.3941 10.3023 19.3941H19.9479C21.19 19.3941 21.8118 19.3941 22.2867 19.1624C22.7048 18.9584 23.045 18.6326 23.258 18.2322C23.5 17.7775 23.5 17.1828 23.5 15.9935V7.90108C23.5 6.71177 23.5 6.11622 23.258 5.66152C23.045 5.26117 22.7041 4.9359 22.286 4.73191C21.8106 4.5 21.1892 4.5 19.9447 4.5H7.05577C5.81121 4.5 5.18847 4.5 4.71311 4.73191C4.29497 4.9359 3.95526 5.26117 3.74221 5.66152C3.5 6.11667 3.5 6.71293 3.5 7.90457V20.1082C3.5 21.2419 3.5 21.8087 3.74273 22.0998C3.95383 22.353 4.27382 22.5003 4.6122 22.5C5.00128 22.4996 5.46382 22.1453 6.38845 21.4371Z" stroke="#F8F9FA" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                            </svg>
+                        </div>
+                        <h4>일정논의</h4>
+                    </div>
+                </div>
+                <div class="map-and-pin">
+                    <div id="map" class="schedule-map"></div>
+                    <div class="search-chips">
+                        <div class="chip">
+                            <div class="icon">
+                                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none">
+                                    <path d="M15 6V21M9 18L15 21L21 18V3L15 6M9 18L3 21V6L9 3L15 6M9 18V3" stroke="#5F6368" stroke-linecap="round" stroke-linejoin="round"/>
+                                </svg>
+                            </div>
+                            <p>길 찾기</p>
+                        </div>
+                        <div class="chip">
+                            <div class="icon">
+                                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none">
+                                <path d="M3 11V15.8002C3 16.9203 3 17.4801 3.21799 17.9079C3.40973 18.2842 3.71547 18.5905 4.0918 18.7822C4.5192 19 5.07899 19 6.19691 19H17.8031C18.921 19 19.48 19 19.9074 18.7822C20.2837 18.5905 20.5905 18.2842 20.7822 17.9079C21 17.4805 21 16.9215 21 15.8036V11M3 11V9M3 11H21M3 9V8.2002C3 7.08009 3 6.51962 3.21799 6.0918C3.40973 5.71547 3.71547 5.40973 4.0918 5.21799C4.51962 5 5.08009 5 6.2002 5H17.8002C18.9203 5 19.4796 5 19.9074 5.21799C20.2837 5.40973 20.5905 5.71547 20.7822 6.0918C21 6.5192 21 7.07899 21 8.19691V9M3 9H21M7 15H11M21 11V9" stroke="#E5E7EB" stroke-linecap="round" stroke-linejoin="round"/>
+                                </svg>
+                            </div>
+                            <p>지출 보기</p>
+                        </div>
+                        <div class="chip">
+                            <div class="icon">
+                                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none">
+                                <path d="M5 9.92285C5 14.7747 9.24448 18.7869 11.1232 20.3252C11.3921 20.5454 11.5281 20.6568 11.7287 20.7132C11.8849 20.7572 12.1148 20.7572 12.271 20.7132C12.472 20.6567 12.6071 20.5463 12.877 20.3254C14.7557 18.7871 18.9999 14.7751 18.9999 9.9233C18.9999 8.08718 18.2625 6.32605 16.9497 5.02772C15.637 3.72939 13.8566 3 12.0001 3C10.1436 3 8.36301 3.7295 7.05025 5.02783C5.7375 6.32616 5 8.08674 5 9.92285Z" stroke="#E5E7EB" stroke-linecap="round" stroke-linejoin="round"/>
+                                <path d="M10 9C10 10.1046 10.8954 11 12 11C13.1046 11 14 10.1046 14 9C14 7.89543 13.1046 7 12 7C10.8954 7 10 7.89543 10 9Z" stroke="#E5E7EB" stroke-linecap="round" stroke-linejoin="round"/>
+                                </svg>
+                            </div>
+                            <p>관광지</p>
+                        </div>
+                        <div class="chip">
+                            <div class="icon">
+                                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none">
+                                <path d="M4 20H10.9433M10.9433 20H11.0567M10.9433 20C10.9622 20.0002 10.9811 20.0002 11 20.0002C11.0189 20.0002 11.0378 20.0002 11.0567 20M10.9433 20C7.1034 19.9695 4 16.8468 4 12.9998V8.92285C4 8.41305 4.41305 8 4.92285 8H17.0767C17.5865 8 18 8.41305 18 8.92285V9M11.0567 20H18M11.0567 20C14.8966 19.9695 18 16.8468 18 12.9998M18 9H19.5C20.8807 9 22 10.1193 22 11.5C22 12.8807 20.8807 14 19.5 14H18V12.9998M18 9V12.9998M15 3L14 5M12 3L11 5M9 3L8 5" stroke="#E5E7EB" stroke-linecap="round" stroke-linejoin="round"/>
+                                </svg>
+                            </div>
+                            <p>식당</p>
+                        </div>
+                    </div>
+                    <div class="schedule-list-wrap">
+                        <div class="title">
+                            <h1>여행 루트</h1>
+                            <span>AI 요약</span>
+                        </div>
+                        <div class="schedule-list-all">
+                            <div class="schedule-list">
+                                <div class="icon-img">
+                                    <img src="img/icons/schedule.png">
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+
+    </div>
+
+    </div>
+</body>
+</html>
