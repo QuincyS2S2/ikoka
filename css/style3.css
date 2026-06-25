@@ -1,0 +1,21 @@
+/* 일정*/
+
+
+.schedule-map {
+    width: 100%;
+    height: 300px;       /* ← 이거 없으면 지도가 안 보임! */
+    border-radius: 16px;
+}
+
+.map-and-pin .search-chips .chip {
+    display : flex;
+    gap : 4px;
+    align-items: center;
+    justify-content: center;
+}
+
+.map-and-pin .search-chips .chip .icon {
+    display : flex;
+    align-items: center;
+    justify-content: center;
+}
