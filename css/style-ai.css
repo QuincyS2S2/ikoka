@@ -1,0 +1,696 @@
+@charset "UTF-8";
+
+/* ============================================================
+   AI 비서 — 대화 방식 선택 (06 01)
+   ============================================================ */
+.ai-main-layout {
+    display: flex;
+    flex-direction: column;
+    gap: 26px;
+    padding: 12px var(--side) calc(var(--safe-bottom) + var(--homebar-h) + 24px);
+}
+
+.ai-main-head {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 2px;
+    text-align: center;
+    margin-top: 32px;
+    margin-bottom: 6px;
+}
+
+.ai-main-sub {
+    color: #FF8E8E;
+    font-size: 20px;
+    font-weight: 500;
+    line-height: 1.5;
+    letter-spacing: -0.4px;
+}
+
+.ai-main-title {
+    color: #222;
+    font-size: 36px;
+    font-weight: 600;
+    line-height: 1.45;
+    letter-spacing: -0.72px;
+}
+
+/* 모드 카드 (자율 대화 상담 / 설문 상담) */
+.ai-mode-card {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    width: 100%;
+    padding: 12px;
+    background: #fff;
+    border: 1px solid #E5E7EB;
+    border-radius: 20px;
+    text-align: left;
+    cursor: pointer;
+    font-family: inherit;
+    transition: border-color 0.2s ease, box-shadow 0.2s ease, transform 0.12s ease;
+}
+
+.ai-mode-card:active {
+    transform: scale(0.99);
+    border-color: #FF8E8E;
+    box-shadow: 0 0 0 2px rgba(255, 142, 142, 0.18);
+}
+
+.ai-mode-img {
+    position: relative;
+    width: 120px;
+    height: 191px;
+    flex-shrink: 0;
+    border-radius: 14px;
+    overflow: hidden;
+}
+
+.ai-mode-img img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    object-position: center;
+}
+
+/* 설문 상담(고양이)은 허리까지만 보이도록 위에서 크게 잘라 보여줌
+.ai-mode-survey .ai-mode-img img {
+    position: absolute;
+    top: 0;
+    left: 50%;
+    transform: translateX(-50%);
+    width: auto;
+    height: 172%;
+    object-fit: cover;
+    object-position: top center;
+} */
+
+.ai-mode-txt {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    gap: 6px;
+    min-width: 0;
+}
+
+.ai-mode-name {
+    display: flex;
+    align-items: center;
+    gap: 2px;
+}
+
+.ai-mode-name h3 {
+    color: #FF8E8E;
+    font-size: 20px;
+    font-weight: 600;
+    line-height: 1.5;
+    letter-spacing: -0.4px;
+}
+
+.ai-mode-arrow {
+    display: inline-flex;
+    align-items: center;
+}
+
+.ai-mode-txt p {
+    color: #222;
+    font-size: 16px;
+    font-weight: 400;
+    line-height: 150%;
+    letter-spacing: -0.32px;
+}
+
+/* ============================================================
+   설문 상담 — 공통 (Q1~Q4 / 완료)
+   ============================================================ */
+.ai-survey-screen {
+    flex-direction: column;
+}
+
+/* 상단 헤더 ("설문상담" + 뒤로가기) */
+.ai-survey-top {
+    position: relative;
+    flex-shrink: 0;
+    height: 102px;
+    display: flex;
+    align-items: flex-end;
+    justify-content: center;
+    padding-bottom: 16px;
+    background: #fff;
+}
+
+.ai-survey-top h3 {
+    color: #222;
+    font-size: 18px;
+    font-weight: 500;
+    line-height: 1.4;
+    letter-spacing: -0.36px;
+}
+
+.ai-back {
+    position: absolute;
+    left: 20px;
+    bottom: 14px;
+    width: 24px;
+    height: 24px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: none;
+    border: none;
+    padding: 0;
+    cursor: pointer;
+}
+
+/* 본문 */
+.ai-survey-body {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    min-height: 0;
+    padding: 0 var(--side) calc(var(--safe-bottom) + 10px);
+    overflow-y: auto;
+}
+
+.ai-q-title {
+    flex-shrink: 0;
+    margin-top: 33px;
+    color: #222;
+    font-size: 20px;
+    font-weight: 600;
+    line-height: 1.5;
+    letter-spacing: -0.4px;
+    text-align: center;
+}
+
+/* 가운데 일러스트 (영역을 채우면서 중앙 정렬) */
+.ai-q-illust {
+    flex: 1;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 20px 0;
+    min-height: 0;
+}
+
+.ai-q-illust img {
+    max-width: 280px;
+    max-height: 100%;
+    object-fit: contain;
+}
+
+/* 단일 선택 옵션 버튼 */
+.ai-options {
+    flex-shrink: 0;
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+}
+
+.ai-option {
+    width: 100%;
+    height: 54px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: #F8F9FA;
+    border: 1px solid transparent;
+    border-radius: 10px;
+    color: #222;
+    font-family: inherit;
+    font-size: 16px;
+    font-weight: 500;
+    line-height: 1.45;
+    letter-spacing: -0.32px;
+    cursor: pointer;
+    transition: background-color 0.2s ease, border-color 0.2s ease, color 0.2s ease, transform 0.1s ease;
+}
+
+.ai-option:active {
+    transform: scale(0.97);
+}
+
+.ai-option.selected {
+    background: #FFF0F0;
+    border-color: #FF8E8E;
+    color: #FF8E8E;
+}
+
+/* 하단 고정 핑크 버튼 (모두 선택 완료 / 결과 보러 가기) */
+.ai-bottom-btn {
+    flex-shrink: 0;
+    margin-top: 16px;
+    width: 100%;
+    height: 54px;
+    border: none;
+    border-radius: 10px;
+    background: #FF8E8E;
+    color: #fff;
+    font-family: inherit;
+    font-size: 16px;
+    font-weight: 500;
+    line-height: 1.45;
+    letter-spacing: -0.32px;
+    cursor: pointer;
+    transition: background-color 0.2s ease, transform 0.12s ease;
+}
+
+.ai-bottom-btn:active {
+    background: #ff7575;
+    transform: scale(0.99);
+}
+
+/* ============================================================
+   Q4 — 가고 싶은 명소 (다중 선택 + 회전 그라데이션)
+   ============================================================ */
+.ai-place-scroll {
+    flex: 1;
+    min-height: 0;
+    overflow-y: auto;
+    margin-top: 24px;
+    scrollbar-width: none;
+}
+
+.ai-place-scroll::-webkit-scrollbar {
+    width: 0;
+    display: none;
+}
+
+.ai-place-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 16px;
+    padding-bottom: 4px;
+}
+
+.ai-place-card {
+    position: relative;
+    aspect-ratio: 169 / 160;
+    padding: 3px;            /* 선택 시 보이는 그라데이션 테두리 두께 */
+    border: none;
+    border-radius: 15px;
+    background: transparent;
+    overflow: hidden;
+    cursor: pointer;
+    -webkit-tap-highlight-color: transparent;
+}
+
+/* 회전하는 컨익 그라데이션 — 평소엔 숨김, 선택 시 빙글빙글 */
+.ai-place-card::before {
+    content: "";
+    position: absolute;
+    inset: -40%;
+    z-index: 0;
+    background: conic-gradient(from 180deg at 50% 50%, #F56462 0deg, #001CD4 114.23076510429382deg, #D271FF 278.4729266166687deg, #72E0C1 360deg);
+    opacity: 0;
+    transition: opacity 0.25s ease;
+}
+
+.ai-place-card.selected::before {
+    opacity: 1;
+    animation: ai-ring-spin 2.5s linear infinite;
+}
+
+@keyframes ai-ring-spin {
+    to {
+        transform: rotate(1turn);
+    }
+}
+
+.ai-place-inner {
+    position: relative;
+    z-index: 1;
+    display: block;
+    width: 100%;
+    height: 100%;
+    border-radius: 12px;
+    overflow: hidden;
+    transition: transform 0.12s ease;
+}
+
+.ai-place-card:active .ai-place-inner {
+    transform: scale(0.97);
+}
+
+.ai-place-inner img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+
+.ai-place-overlay {
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(to bottom, rgba(102, 102, 102, 0) 48.7%, rgba(0, 0, 0, 0.8) 100%);
+}
+
+.ai-place-heart {
+    position: absolute;
+    top: 10px;
+    right: 10px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.ai-place-card.selected .ai-place-heart svg path {
+    fill: #FF8E8E;
+    stroke: #FF8E8E;
+}
+
+.ai-place-info {
+    position: absolute;
+    left: 10px;
+    right: 10px;
+    bottom: 10px;
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+}
+
+.ai-place-name {
+    color: #fff;
+    font-size: 15px;
+    font-weight: 500;
+    line-height: 1.4;
+    letter-spacing: -0.3px;
+}
+
+.ai-place-meta {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+
+.ai-place-city {
+    color: #fff;
+    font-size: 14px;
+}
+
+.ai-place-rating {
+    display: flex;
+    align-items: center;
+    gap: 4px;
+    color: #fff;
+    font-size: 14px;
+}
+
+/* ============================================================
+   AI 비서 대화 (채팅)
+   ============================================================ */
+.ai-chat-screen {
+    flex-direction: column;
+    background: #fff;
+}
+
+.ai-chat-top {
+    position: relative;
+    flex-shrink: 0;
+    height: 102px;
+    display: flex;
+    align-items: flex-end;
+    justify-content: center;
+    padding-bottom: 16px;
+    background: #fff;
+    z-index: 2;
+}
+
+.ai-chat-top h3 {
+    color: #222;
+    font-size: 18px;
+    font-weight: 500;
+    line-height: 1.4;
+    letter-spacing: -0.36px;
+}
+
+/* 메시지 스크롤 영역 */
+.ai-chat-scroll {
+    flex: 1;
+    min-height: 0;
+    overflow-y: auto;
+    padding: 6px var(--side) 20px;
+    scrollbar-width: none;
+}
+
+.ai-chat-scroll::-webkit-scrollbar {
+    width: 0;
+    display: none;
+}
+
+.ai-chat-messages {
+    display: flex;
+    flex-direction: column;
+}
+
+/* 메시지 공통 */
+.ai-msg {
+    display: flex;
+    margin-top: 24px;
+    animation: ai-msg-in 0.28s ease both;
+}
+
+.ai-msg:first-child {
+    margin-top: 4px;
+}
+
+@keyframes ai-msg-in {
+    from { opacity: 0; transform: translateY(8px); }
+    to   { opacity: 1; transform: translateY(0); }
+}
+
+/* 사용자 메시지 (오른쪽 회색 버블) */
+.ai-msg.user {
+    justify-content: flex-end;
+}
+
+.ai-msg.user .ai-bubble {
+    max-width: 78%;
+    padding: 10px 14px;
+    background: #F8F9FA;
+    border-radius: 20px;
+    color: #222;
+    font-size: 15px;
+    font-weight: 400;
+    line-height: 1.4;
+    letter-spacing: -0.3px;
+    white-space: pre-wrap;
+    word-break: break-word;
+}
+
+/* AI 메시지 (왼쪽 아바타 + 내용) */
+.ai-msg.bot {
+    gap: 10px;
+    align-items: flex-start;
+}
+
+.ai-avatar {
+    width: 42px;
+    height: 42px;
+    flex-shrink: 0;
+    border-radius: 50%;
+    overflow: hidden;
+}
+
+.ai-avatar img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+
+.ai-bot-content {
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+    max-width: 301px;
+    padding-top: 2px;
+}
+
+.ai-bot-text {
+    color: #222;
+    font-size: 15px;
+    font-weight: 400;
+    line-height: 1.4;
+    letter-spacing: -0.3px;
+    white-space: pre-wrap;
+    word-break: break-word;
+}
+
+/* 스트리밍 중 깜빡이는 커서 */
+.ai-bot-text.is-typing::after {
+    content: "";
+    display: inline-block;
+    width: 7px;
+    height: 15px;
+    margin-left: 1px;
+    vertical-align: -2px;
+    background: #FF8E8E;
+    border-radius: 1px;
+    animation: ai-caret 0.8s steps(1) infinite;
+}
+
+@keyframes ai-caret {
+    50% { opacity: 0; }
+}
+
+/* 리스트 카드 */
+.ai-bot-list {
+    border: 1px solid #E5E7EB;
+    border-radius: 10px;
+    padding: 10px 10px 10px 0;
+}
+
+.ai-bot-list ul,
+.ai-bot-list ol {
+    padding-left: 32px;
+    display: flex;
+    flex-direction: column;
+    gap: 4px;
+}
+
+.ai-bot-list li {
+    list-style: inherit;
+    color: #222;
+    font-size: 15px;
+    font-weight: 400;
+    line-height: 1.4;
+    letter-spacing: -0.3px;
+}
+
+.ai-bot-list ul { list-style: disc; }
+.ai-bot-list ol { list-style: decimal; }
+
+/* 타이핑(로딩) 인디케이터 */
+.ai-typing-bubble {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    padding-top: 9px;
+}
+
+.ai-typing-label {
+    color: #5F6368;
+    font-size: 15px;
+    font-weight: 500;
+    line-height: 1.4;
+    letter-spacing: -0.3px;
+}
+
+.ai-typing-dots {
+    display: inline-flex;
+    align-items: center;
+    gap: 4px;
+}
+
+.ai-typing-dots span {
+    width: 7px;
+    height: 7px;
+    border-radius: 50%;
+    background: #C9CDD4;
+    animation: ai-dot 1.2s infinite ease-in-out;
+}
+
+.ai-typing-dots span:nth-child(2) { animation-delay: 0.18s; }
+.ai-typing-dots span:nth-child(3) { animation-delay: 0.36s; }
+
+@keyframes ai-dot {
+    0%, 60%, 100% { transform: translateY(0); opacity: 0.5; }
+    30% { transform: translateY(-5px); opacity: 1; }
+}
+
+/* 추천 질문 칩 */
+.ai-chat-chips {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 8px;
+    margin: 6px 0 0 52px;
+    animation: ai-msg-in 0.28s ease both;
+}
+
+.ai-chat-chip {
+    padding: 8px 12px;
+    background: #fff;
+    border: 1px solid #E5E7EB;
+    border-radius: 99px;
+    color: #5F6368;
+    font-family: inherit;
+    font-size: 14px;
+    font-weight: 400;
+    letter-spacing: -0.28px;
+    cursor: pointer;
+    transition: border-color 0.2s ease, background-color 0.2s ease, color 0.2s ease;
+}
+
+.ai-chat-chip:active {
+    border-color: #FF8E8E;
+    background: #FFF0F0;
+    color: #FF8E8E;
+}
+
+/* 입력 바 */
+.ai-chat-input {
+    flex-shrink: 0;
+    display: flex;
+    flex-direction: column;
+    gap: 13px;
+    padding: 22px var(--side) calc(var(--safe-bottom) + 12px);
+    background: #fff;
+    border-radius: 30px 30px 0 0;
+    box-shadow: 0 -4px 10px rgba(0, 0, 0, 0.05);
+    z-index: 2;
+}
+
+.ai-chat-input input {
+    width: 100%;
+    border: none;
+    outline: none;
+    background: transparent;
+    color: #222;
+    font-family: inherit;
+    font-size: 16px;
+    font-weight: 500;
+    line-height: 1.45;
+    letter-spacing: -0.32px;
+}
+
+.ai-chat-input input::placeholder {
+    color: #9CA3AF;
+}
+
+.ai-chat-tools {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+
+.ai-chat-tools-left {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+
+.ai-chat-tool {
+    display: flex;
+    padding: 0;
+    background: none;
+    border: none;
+    cursor: pointer;
+}
+
+.ai-chat-send {
+    display: flex;
+    padding: 0;
+    background: none;
+    border: none;
+    cursor: pointer;
+    color: #9CA3AF;
+    transition: color 0.2s ease, transform 0.12s ease;
+}
+
+.ai-chat-send.active {
+    color: #FF8E8E;
+}
+
+.ai-chat-send:active {
+    transform: scale(0.9);
+}

@@ -1,0 +1,109 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>IKOKA · iPhone 393x852px</title>
+    <style>
+        html, body {
+            margin: 0;
+            height: 100%;
+        }
+        body {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            min-height: 100vh;
+            background: #fff;
+        }
+
+        .wrap{
+            display : flex;
+            align-items: center;
+            justify-content: center;
+        transform: scale(0.62);
+        transform-origin: center;
+        }
+
+
+        .fraim {
+            background-color: #fff;
+        }
+
+        .out {
+            width: 453px;
+            height: 912px;
+            border-radius: 83px;
+            background: linear-gradient(180deg, #5D5B9D 0%, #12112B 100%);
+            box-shadow: 0 4px 4px 0 rgba(255, 255, 255, 0.25) inset, 0 8px 12px 0 rgba(0, 0, 0, 0.25) inset;
+            display : flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .bezel {
+        width: 433px;
+        height: 892px;
+        border-radius: 80px;
+        border: 2px solid #AAA4F4;
+        background: linear-gradient(180deg, #21212B 0%, #141427 100%);
+        display : flex;
+        align-items: center;
+        justify-content: center;
+        }
+
+        .screen-wrap {
+        width: 393px;
+        height: 852px;
+        border-radius: 69px;
+        background: #FFF;
+        position : relative;
+        }
+
+        .Dynamic-Island {
+            width: 98px;
+            height: 24px;
+            border-radius: 99px;
+            background: #21212B;
+            position : absolute;
+            top : 24px;
+            left : 50%;
+            transform: translateX(-50%); /* 요소를 왼쪽으로 자신의 너비 50%만큼 이동 */
+            z-index: 2;                  /* 화면 위에 떠 있도록 */
+            pointer-events: none;        /* 다이내믹 아일랜드가 터치를 막지 않도록 */
+        }
+
+        .screen {
+            position: absolute;
+            inset: 0;
+            border-radius: 69px;      /* screen-wrap이랑 동일하게 */
+            overflow: hidden;          /* 모서리 밖으로 안 삐져나오게 */
+        }
+        .screen iframe,
+        .screen img {
+            width: 100%;
+            height: 100%;
+            border: 0;
+            object-fit: cover;
+        }
+
+
+    </style>
+</head>
+<body>
+    <div class="wrap">
+        <div class="fraim">
+            <div class="out">
+                <div class="bezel">
+                    <div class="screen-wrap">
+                        <div class="Dynamic-Island"></div>
+                        <div class="screen">
+                            <iframe src="app.html" title="IKOKA"></iframe>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</body>
+</html>
